@@ -35,7 +35,7 @@ public class PrpUser{
 	private String email;
 	@OneToOne(cascade=CascadeType.ALL)
 	//@NotEmpty
-	//@Valid
+	@Valid
 	private UserAddress address;
 	
 	public PrpUser() {

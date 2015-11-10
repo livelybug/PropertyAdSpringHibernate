@@ -65,7 +65,7 @@
 	<tr>
 		<td><spring:message code="label.address.postcode"/></td>
 		<td><form:input placeholder="Pleas input six digits" path="address.postcode" size="30"/></td>
-		<%-- <td><form:errors path="address.postcode" cssClass="fieldErrors"></form:errors></td> --%>	
+		<td><form:errors path="address.postcode" cssClass="fieldErrors"></form:errors></td>	
 	</tr>
 
 	<tr>

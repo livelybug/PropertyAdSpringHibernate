@@ -65,7 +65,7 @@ public class ProptCntl {
 	}
 */
 	@RequestMapping(value = "/addNewCustomer", method=RequestMethod.POST)
-	public ModelAndView addNewCustomertoDb(@ModelAttribute("customer") Customer customer, BindingResult result) {
+	public ModelAndView addNewCustomertoDb(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {
 		
 		ModelAndView mv = new ModelAndView();
 		
