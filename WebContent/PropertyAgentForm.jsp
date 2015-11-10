@@ -6,19 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Project: property advertisement - customer register</title>
+<title>Project: property advertisement - property agent register</title>
 <link type="text/css" rel="stylesheet" href="css/errorStyle.css">
 </head>
 <body>
-<h1>Customer Register</h1>
-<h3>Add New Customer</h3>
+<h1>Property Agent Register</h1>
+<h3>Add New Property Agent</h3>
 
 <jsp:include page="PropertyUserForm.jsp">
-  <jsp:param name="action" value="addNewCustomer"/>
-  <jsp:param name="commandName" value="customer"/>
+  <jsp:param name="action" value="addNewPrptAgent"/>
+  <jsp:param name="commandName" value="propertyAgent"/>
 </jsp:include>
-
-<%-- <%@ include file="PropertyUserForm.jsp" %> --%>
 
 </body>
 </html>

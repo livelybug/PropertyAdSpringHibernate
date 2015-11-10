@@ -13,7 +13,7 @@ import com.spring.validation.DigitsAnn;
 
 @MappedSuperclass
 public class PrpUser{
-	@Column
+	@Column(unique=true)
 	@NotEmpty
 	private String username;
 	@Column
@@ -32,7 +32,7 @@ public class PrpUser{
 	//@NotEmpty
 	@DigitsAnn(message="invalide phone number")
 	private String mobile;
-	@Column
+	@Column(unique=true)
 	@NotEmpty
 	@Email
 	private String email;

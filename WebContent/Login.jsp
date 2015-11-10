@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.io.PrintWriter" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 
 <p/>Customer register <a href="showCustomerForm" >Click here</a>
 
-<p/>Property Agent register <a href="Register.jsp" >Click here</a>
+<p/>Property Agent register <a href="showPrptAgentForm" >Click here</a>
 
 <p/>Customer Login 
 <form action="Login.jsp" method="post">

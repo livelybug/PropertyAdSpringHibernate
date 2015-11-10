@@ -14,37 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.dao.CustomerDaoImp;
 import com.spring.domain.Customer;
+import com.spring.domain.PropertyAgent;
 import com.spring.domain.PrpUser;
-import com.spring.domain.UserAddress;
 import com.spring.service.UserService;
 
 
 @Controller
 public class ProptCntl {
 
-	//CustomerDaoImp custSv = new ContactDaoImp();
 	@Autowired
 	UserService custSv;
+	@Autowired
+	UserService prptAgtSv;
 	
 	@RequestMapping("/")
 	public String showHomePage(){
-		return "index";
+		return "Login";
 	}
 	
 	@RequestMapping("/showCustomerForm")
 	public String showContactForm(Model model) {
-		//model.addAttribute(new Contact());
-		/**
-		 * Form backing object
-		 * This is an empty form to be used by the form to fill the values of the contact object
-		 * */
 		model.addAttribute("customer", new Customer());
-		//model.addAttribute("address", new UserAddress());
 		return "CustomerForm";
 	}
-	
+
+	@RequestMapping("/showPrptAgentForm")
+	public String showPrptAgentForm(Model model) {
+		model.addAttribute("propertyAgent", new PropertyAgent());
+		return "PropertyAgentForm";
+	}
+
 	@RequestMapping("/viewContactList")
 	public String  showContactList(Model model) {
 		//send the contact list to the "ContactList.jsp"
@@ -79,6 +79,20 @@ public class ProptCntl {
 		return mv;
 	}
 
+	@RequestMapping(value = "/addNewPrptAgent", method=RequestMethod.POST)
+	public ModelAndView addNewPrptAgentoDb(@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent, BindingResult result) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(result.hasErrors()) {
+			mv.setViewName("PropertyAgentForm");
+		}else {
+			prptAgtSv.addUser(propertyAgent);
+			mv.setViewName("UserAdded");
+		}
+		
+		return mv;
+	}
 	
 	@RequestMapping(value = "/delete/{contactId}")
 	public String deleteContact(@PathVariable("contactId") Integer userId) {

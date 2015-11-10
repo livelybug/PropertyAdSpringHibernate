@@ -7,35 +7,36 @@ import org.springframework.stereotype.Service;
 
 import com.spring.dao.PrptUserDao;
 import com.spring.domain.Customer;
-import com.spring.domain.Customer;
-import com.spring.domain.PrpUser;
+import com.spring.domain.PropertyAgent;
 import com.spring.domain.PrpUser;
 
 @Service
-public class CustomerServiceImp implements UserService {
+public class PrptAgentServiceImp implements UserService {
 
 	@Autowired
-	PrptUserDao custDao;
+	PrptUserDao prptAgtDao;
 	
 	@Override
-	public void addUser(PrpUser user) {
-		custDao.addUser(user);
-	}
-
-	@Override
 	public Customer getUserById(Integer id) {
-		return custDao.getUserById(id);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<PrpUser> getUserList() {
-		return custDao.getUserList();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void deleteUserById(Integer id) {
-		custDao.deleteUserById(id);
+		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void addUser(PrpUser user) {
+		prptAgtDao.addUser((PropertyAgent)user);
 	}
 
 }

@@ -6,7 +6,7 @@ import com.spring.domain.Customer;
 import com.spring.domain.PrpUser;
 
 
-public interface PrpUserDao {
+public interface PrptUserDao {
 	public void addUser(PrpUser user);
 	public Customer getUserById(Integer id);
 	public List<PrpUser> getUserList();

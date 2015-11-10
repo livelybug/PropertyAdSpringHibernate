@@ -14,12 +14,12 @@ import com.spring.domain.PrpUser;
 
 
 @Repository
-public class CustomerDaoImp implements PrpUserDao {
+public class CustomerDaoImp implements PrptUserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//@Override  ?? needed
+	@Override
 	@Transactional
 	public void addUser(PrpUser user) {
 		//Session session = HibernateUtils.openSession();

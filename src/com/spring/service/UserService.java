@@ -10,5 +10,5 @@ public interface UserService {
 	public Customer getUserById(Integer id);
 	public List<PrpUser> getUserList();
 	public void deleteUserById(Integer id);
-	public void addUser(PrpUser customer);
+	public void addUser(PrpUser user);
 }

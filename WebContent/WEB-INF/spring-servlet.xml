@@ -37,8 +37,9 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.spring.domain.Customer</value>
 				<value>com.spring.domain.PrpUser</value>
+				<value>com.spring.domain.Customer</value>
+				<value>com.spring.domain.PropertyAgent</value>
 				<value>com.spring.domain.UserAddress</value>
 			</list>
 		</property>
@@ -61,4 +62,8 @@
 	<tx:annotation-driven transaction-manager="txManager" />
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<mvc:resources location="/css/" mapping="/css/**" />
+	<bean id="prptAgtDao" class="com.spring.dao.PrptAgentDaoImp"></bean>
+	<bean id="prptAgtSv"
+		class="com.spring.service.PrptAgentServiceImp">
+	</bean>
 </beans>
