@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+/*CSS class to display error messages in red color and italics font*/
+.fieldErrors{
+	color:red;
+	font-style: italic;
+	font-family: cursive;
+}

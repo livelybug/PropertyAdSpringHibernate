@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.spring.validation.DigitsAnn;
+
 @MappedSuperclass
 public class PrpUser{
 	@Column
@@ -27,7 +29,8 @@ public class PrpUser{
 	@NotEmpty
 	private String gender;
 	@Column
-	@NotEmpty
+	//@NotEmpty
+	@DigitsAnn(message="invalide phone number")
 	private String mobile;
 	@Column
 	@NotEmpty
