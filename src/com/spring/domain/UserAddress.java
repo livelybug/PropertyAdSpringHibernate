@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table
@@ -18,8 +21,11 @@ public class UserAddress {
 	private int addressId;
 
 	@Column
+	@NotEmpty
 	private String address;
+	
 	@Column
+	@Size(min=6, max=6, message="Postcode must be 6 digits")
 	private String postcode;
 	
 	public String getAddress() {

@@ -4,24 +4,38 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @MappedSuperclass
 public class PrpUser{
 	@Column
+	@NotEmpty
 	private String username;
 	@Column
+	@NotEmpty
 	private String password;
 	@Column
+	@NotEmpty
 	private String firstName;
 	@Column
+	@NotEmpty
 	private String lastName;
 	@Column
+	@NotEmpty
 	private String gender;
 	@Column
+	@NotEmpty
 	private String mobile;
 	@Column
+	@NotEmpty
+	@Email
 	private String email;
 	@OneToOne(cascade=CascadeType.ALL)
+	//@NotEmpty
+	//@Valid
 	private UserAddress address;
 	
 	public PrpUser() {
