@@ -28,6 +28,16 @@ public class UserAddress {
 	@Size(min=6, max=6, message="Postcode must be 6 digits")
 	private String postcode;
 	
+	
+	
+	public int getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+
 	public String getAddress() {
 		return address;
 	}

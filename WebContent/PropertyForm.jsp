@@ -39,8 +39,8 @@
 	<tr>
 		<td><spring:message code="label.rent_sale"/></td>
 		<td>
-		<form:radiobutton path="rent_sale" value="rent"/><spring:message code="label.rent"/>
-		<form:radiobutton path="rent_sale" value="sale"/><spring:message code="label.sale"/>	
+		<form:radiobutton path="rent_sale" value="Rent"/><spring:message code="label.rent"/>
+		<form:radiobutton path="rent_sale" value="Sale"/><spring:message code="label.sale"/>	
 		</td>
 		<td><form:errors path="rent_sale" cssClass="fieldErrors"></form:errors></td>
 	</tr>

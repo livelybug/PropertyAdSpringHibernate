@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.Customer;
 import com.spring.domain.PropertyBld;
+import com.spring.domain.PrpUser;
 
 @Repository
 public class PropertyBldDaoImp implements PropertyBldDao {
@@ -34,8 +35,8 @@ public class PropertyBldDaoImp implements PropertyBldDao {
 	@Override
 	@Transactional
 	public List<PropertyBld> getPropertyList() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from PropertyBld").list();
 	}
 
 	@Override

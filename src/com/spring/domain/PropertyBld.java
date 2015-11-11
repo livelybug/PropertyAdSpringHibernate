@@ -38,7 +38,13 @@ public class PropertyBld {
 	private PropertyAgent pAgt;
 	//private Part imgFile;
 	
-
+	
+	public int getPropertyId() {
+		return propertyId;
+	}
+	public void setPropertyId(int propertyId) {
+		this.propertyId = propertyId;
+	}
 	public String getPropertyName() {
 		return propertyName;
 	}

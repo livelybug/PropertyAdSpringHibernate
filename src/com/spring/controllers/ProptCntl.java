@@ -66,16 +66,17 @@ public class ProptCntl {
 		model.addAttribute("contactList", cl);
 		return "ContactList";
 	}
-	
-/*	@RequestMapping(value = "/addNewCustomer", method=RequestMethod.POST)
-	public String addNewCustomertoDb(@ModelAttribute("customer") Customer customer) {
-		if(customer.getFirstName().isEmpty() || customer.getLastName().isEmpty())
-			return "CustomerForm";
-			
-		custSv.addUser(customer);// Insert to DB		
-		return "ContactAdded";
+
+	@RequestMapping("/showPropertyList")
+	public String  showPropertyList(Model model) {
+		//send the contact list to the "ContactList.jsp"
+		//model.addAttribute("contactList", pb.getContactList());
+		
+		List<PropertyBld> prptLst = prptSv.getPropertyList();
+		model.addAttribute("propertyList", prptLst);
+		return "PropertyList";
 	}
-*/
+
 	@RequestMapping(value = "/addNewCustomer", method=RequestMethod.POST)
 	public ModelAndView addNewCustomertoDb(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {
 		

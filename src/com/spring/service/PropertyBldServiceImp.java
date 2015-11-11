@@ -26,8 +26,7 @@ public class PropertyBldServiceImp implements PropertyBldService {
 
 	@Override
 	public List<PropertyBld> getPropertyList() {
-		// TODO Auto-generated method stub
-		return null;
+		return prptDao.getPropertyList();
 	}
 
 	@Override

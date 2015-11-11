@@ -28,7 +28,8 @@
 		<!-- something wrong ?? -->
     </c:otherwise>
 </c:choose>
-	<br />Property Search
+
+	<br /><a href="showPropertyList" >Property List</a><p/>
 <p/>
 <%-- <a href="${pageContext.request.contextPath}/">back home</a> --%>
 <a href="Login.jsp">back home</a>
