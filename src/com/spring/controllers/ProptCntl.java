@@ -12,21 +12,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.domain.Customer;
 import com.spring.domain.PropertyAgent;
+import com.spring.domain.PropertyBld;
 import com.spring.domain.PrpUser;
+import com.spring.service.PropertyBldServiceImp;
 import com.spring.service.UserService;
 
 
 @Controller
+@SessionAttributes("propertyAgent")
 public class ProptCntl {
 
 	@Autowired
 	UserService custSv;
 	@Autowired
 	UserService prptAgtSv;
+	@Autowired
+	PropertyBldServiceImp prptSv;
 	
 	@RequestMapping("/")
 	public String showHomePage(){
@@ -43,6 +49,12 @@ public class ProptCntl {
 	public String showPrptAgentForm(Model model) {
 		model.addAttribute("propertyAgent", new PropertyAgent());
 		return "PropertyAgentForm";
+	}
+
+	@RequestMapping("/showPropertyForm")
+	public String showPropertyForm(Model model) {
+		model.addAttribute("property", new PropertyBld());
+		return "PropertyForm";
 	}
 
 	@RequestMapping("/viewContactList")
@@ -93,7 +105,25 @@ public class ProptCntl {
 		
 		return mv;
 	}
-	
+
+	@RequestMapping(value = "/addNewProperty", method=RequestMethod.POST)
+	public ModelAndView addNewPropertyoDb(@ModelAttribute("property") @Valid PropertyBld property, 
+			@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent,
+			BindingResult result) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(result.hasErrors()) {
+			mv.setViewName("PropertyForm");
+		}else {
+			property.setpAgt(propertyAgent);
+			prptSv.addProperty(property);
+			mv.setViewName("UserAdded");
+		}
+		
+		return mv;
+	}
+
 	@RequestMapping(value = "/delete/{contactId}")
 	public String deleteContact(@PathVariable("contactId") Integer userId) {
 		custSv.deleteUserById(userId);

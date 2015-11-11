@@ -8,36 +8,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.domain.PropertyAgent;
-import com.spring.domain.PrpUser;
+import com.spring.domain.Customer;
+import com.spring.domain.PropertyBld;
 
 @Repository
-public class PrptAgentDaoImp implements PrptUserDao {
+public class PropertyBldDaoImp implements PropertyBldDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	@Transactional
-	public void addUser(PrpUser user) {
+	public void addProperty(PropertyBld property) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save((PropertyAgent)user);
+		session.save(property);
 	}
 
 	@Override
-	public PrpUser getUserById(Integer id) {
+	@Transactional
+	public PropertyBld getPropertyById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PrpUser> getUserList() {
+	@Transactional
+	public List<PropertyBld> getPropertyList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteUserById(Integer id) {
+	@Transactional
+	public void deletePropertyById(Integer id) {
 		// TODO Auto-generated method stub
 
 	}

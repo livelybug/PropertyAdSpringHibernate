@@ -32,7 +32,7 @@ public class CustomerDaoImp implements PrptUserDao {
 	}
 
 	@Transactional
-	public Customer getUserById(Integer id) {
+	public PrpUser getUserById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
 		Customer customer = (Customer) session.get(Customer.class, id);
 		return customer;

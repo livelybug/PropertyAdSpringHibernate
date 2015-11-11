@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.PrptUserDao;
-import com.spring.domain.Customer;
 import com.spring.domain.PropertyAgent;
 import com.spring.domain.PrpUser;
 
@@ -17,7 +16,7 @@ public class PrptAgentServiceImp implements UserService {
 	PrptUserDao prptAgtDao;
 	
 	@Override
-	public Customer getUserById(Integer id) {
+	public PrpUser getUserById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.PrptUserDao;
-import com.spring.domain.Customer;
-import com.spring.domain.Customer;
-import com.spring.domain.PrpUser;
 import com.spring.domain.PrpUser;
 
 @Service
@@ -23,7 +20,7 @@ public class CustomerServiceImp implements UserService {
 	}
 
 	@Override
-	public Customer getUserById(Integer id) {
+	public PrpUser getUserById(Integer id) {
 		return custDao.getUserById(id);
 	}
 

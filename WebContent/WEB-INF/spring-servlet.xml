@@ -41,6 +41,7 @@
 				<value>com.spring.domain.Customer</value>
 				<value>com.spring.domain.PropertyAgent</value>
 				<value>com.spring.domain.UserAddress</value>
+				<value>com.spring.domain.PropertyBld</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -65,5 +66,9 @@
 	<bean id="prptAgtDao" class="com.spring.dao.PrptAgentDaoImp"></bean>
 	<bean id="prptAgtSv"
 		class="com.spring.service.PrptAgentServiceImp">
+	</bean>
+	<bean id="prptDao" class="com.spring.dao.PropertyBldDaoImp"></bean>
+	<bean id="prptSv"
+		class="com.spring.service.PropertyBldServiceImp">
 	</bean>
 </beans>
