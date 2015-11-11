@@ -117,6 +117,19 @@
 		<version>3.2.3.RELEASE</version>
 	</dependency>
 	
+	    <!-- dependancies for excel exprot and PDF -->
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.12</version>
+	</dependency>
+	  
+	  <dependency>
+		<groupId>com.itextpdf</groupId>
+		<artifactId>itextpdf</artifactId>
+		<version>5.5.6</version>
+	</dependency>
+	
   </dependencies>  
     
   
