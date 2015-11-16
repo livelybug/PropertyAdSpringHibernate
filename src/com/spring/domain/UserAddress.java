@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table
-public class UserAddress {
+public class UserAddress implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

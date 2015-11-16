@@ -42,6 +42,8 @@
 </table>
 </c:if>
 
+<a href="PrptListExcel">Excel</a>
+<a href="PrptListPdf">PDF</a>
 <a href="${pageContext.request.contextPath}/">back home</a>
 
 </body>

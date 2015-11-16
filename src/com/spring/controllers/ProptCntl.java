@@ -1,5 +1,6 @@
 package com.spring.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -135,6 +136,23 @@ public class ProptCntl {
 	public String editContact(@PathVariable("contactId") Integer contactId) {
 		//custSv.deleteContactById(contactId);
 		return "redirect:/viewContactList";
+	}
+
+	/*the URL patter is the name of the excel file*/
+	@RequestMapping(value = "/PrptListExcel", method=RequestMethod.GET)
+	public ModelAndView saveAsExcel() {
+		List<PropertyBld> prptLst = new ArrayList<PropertyBld>(prptSv.getPropertyList());
+		//return a view that can be resolved by a excelView Resolver
+		ModelAndView mav = new ModelAndView("excelView", "prptLst", prptLst);
+		return mav;
+	}
+
+	@RequestMapping(value = "/PrptListPdf", method=RequestMethod.GET)
+	public ModelAndView saveAsPDF() {
+		List<PropertyBld> prptLst = new ArrayList<PropertyBld>(prptSv.getPropertyList());
+		//return a view that can be resolved by a pdfView Resolver
+		ModelAndView mav = new ModelAndView("pdfView", "prptLst", prptLst);
+		return mav;
 	}
 
 }

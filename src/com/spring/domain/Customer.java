@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Customer extends PrpUser implements Serializable{
 
 	/**
-	 * 
+	 * If the class structure is changed in, e.g. phase II, update the "serialVersionUID" manually 
 	 */
 	private static final long serialVersionUID = 1L;
 	

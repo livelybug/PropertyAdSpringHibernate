@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +18,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table
-public class PropertyBld {
+public class PropertyBld implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id //this is the primary key
 	@GeneratedValue(strategy = GenerationType.AUTO)
