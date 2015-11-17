@@ -1,7 +1,9 @@
 package com.spring.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +25,7 @@ import com.spring.domain.PropertyBld;
 import com.spring.domain.PrpUser;
 import com.spring.service.PropertyBldServiceImp;
 import com.spring.service.UserService;
+
 
 
 @Controller
@@ -153,6 +157,17 @@ public class ProptCntl {
 		//return a view that can be resolved by a pdfView Resolver
 		ModelAndView mav = new ModelAndView("pdfView", "prptLst", prptLst);
 		return mav;
+	}
+
+	//Retrieve contacts from DB and convert to JSON format
+	@RequestMapping(value="/getProperties", method=RequestMethod.GET, produces="application/json")
+	@ResponseBody
+	public Map<String,Object> getJSONProperties(){
+		List<PropertyBld> myProperties = prptSv.getPropertyList();
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("total", myProperties.size());
+		data.put("propertiesList", myProperties);
+		return data;
 	}
 
 }

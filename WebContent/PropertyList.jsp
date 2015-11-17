@@ -5,16 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Project: property advertisement - property list</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <h1>Property  List</h1>
 
 
 <c:if test="${! empty propertyList}">
-<table border="1">
-
+<table  class="table table-striped">
+<!-- <table> -->
 	<tr>
 		<th><spring:message code="label.propertyName"/></th>
 		<th><spring:message code="label.address.address"/></th>
@@ -33,8 +35,10 @@
 			<td>${property.getpAgt().getMobile()}</td>
 			<td>${property.getComment()}</td>
 			<td>
-			<a href="editProperty/${property.getPropertyId() }">Edit</a> 
-			<a href="delete/${property.getPropertyId() }">Delete</a>
+			<a class="btn btn-warning" href="editProperty/${property.getPropertyId() }">
+			<span class="glyphicon glyphicon-edit"></span>Edit</a> 
+			<a class="btn btn-danger" href="delete/${property.getPropertyId() }">
+			<span class="glyphicon glyphicon-remove"></span>Delete</a>
 			</td>
 		</tr>
 	</c:forEach>	
