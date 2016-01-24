@@ -97,7 +97,7 @@ Property List<span id="counter" class="badge"></span></a>
 <p class="indent"/> <a class="btn btn-primary btn-lg" href="showCustomerForm" >Customer register</a>
  <a class="btn btn-primary btn-lg" href="showPrptAgentForm" >Property Agent register</a>
  
- <script>
+<script>
 
 	function updateCounter(inData){
 		$("#counter").text(inData.total);

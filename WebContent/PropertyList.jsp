@@ -5,9 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Project: property advertisement - property list</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpringWebMVC-02: spring web beans</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -25,6 +29,7 @@
 		<th><spring:message code="label.mobile"/></th>
 		<th><spring:message code="label.comment"/></th>
 		<th><spring:message code="label.action"/></th>
+		<th><spring:message code="label.mailAgent"/></th>
 	</tr>
 	
 	<c:forEach items="${propertyList}" var="property">
@@ -35,11 +40,15 @@
 			<td>${property.getpAgt().getMobile()}</td>
 			<td>${property.getComment()}</td>
 			<td>
-			<a class="btn btn-warning" href="editProperty/${property.getPropertyId() }">
+			<%-- <a class="btn btn-warning" href="editProperty/${property.getPropertyId() }"> --%>
+			<a class="btn btn-warning" href="editProperty">
 			<span class="glyphicon glyphicon-edit"></span>Edit</a> 
-			<a class="btn btn-danger" href="delete/${property.getPropertyId() }">
+			
+			<%-- <a class="btn btn-danger" href="delete/${property.getPropertyId() }"> --%>
+			<a class="btn btn-danger" href="delete">
 			<span class="glyphicon glyphicon-remove"></span>Delete</a>
 			</td>
+			<td>${property.getComment()}</td>
 		</tr>
 	</c:forEach>	
 
