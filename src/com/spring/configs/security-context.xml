@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="admin" authorities="ADMIN"
+					password="admin123" />
+				<security:user name="user" authorities="USER"
+					password="user123" />
+			</security:user-service>
+			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	<security:http use-expressions="true">
+		<security:intercept-url pattern="/showNewContactForm"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/showMessageForm"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/css/**" access="permitAll" />
+		<security:intercept-url pattern="/fonts/**" access="permitAll" />
+		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:form-login login-page="/login"
+			authentication-failure-url="/login?error=true" />
+		
+		<security:logout logout-success-url="/logmeout"
+			logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID"
+			invalidate-session="true" />
+	</security:http>
+	<security:debug />
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean>
+</beans>
