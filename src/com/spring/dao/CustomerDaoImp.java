@@ -1,7 +1,9 @@
 package com.spring.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,26 @@ public class CustomerDaoImp implements PrptUserDao {
 		
 		if(cst != null)
 			session.delete(cst);
+	}
+
+	@Override
+	@Transactional
+	public List<PrpUser> duplcExist(PrpUser user) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		List<PrpUser> users = new ArrayList<PrpUser>();
+		
+		String hql1 = "from Customer where userName = :userName or email = :email";
+		
+		Query query = session.createQuery(hql1);
+		query.setParameter("userName", ((Customer)user).getUsername());
+		query.setParameter("email", ((Customer)user).getEmail());
+		users = query.list();
+		
+		if(users.size() > 0)
+			return users;
+		else
+			return null;
 	}
 
 }

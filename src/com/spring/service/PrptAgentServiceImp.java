@@ -38,4 +38,10 @@ public class PrptAgentServiceImp implements UserService {
 		prptAgtDao.addUser((PropertyAgent)user);
 	}
 
+	@Override
+	public List<PrpUser> duplcExist(PrpUser user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

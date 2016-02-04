@@ -10,4 +10,5 @@ public interface UserService {
 	public List<PrpUser> getUserList();
 	public void deleteUserById(Integer id);
 	public void addUser(PrpUser user);
+	public List<PrpUser> duplcExist(PrpUser user);
 }

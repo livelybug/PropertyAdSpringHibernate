@@ -10,4 +10,5 @@ public interface PrptUserDao {
 	public PrpUser getUserById(Integer id);
 	public List<PrpUser> getUserList();
 	public void deleteUserById(Integer id);
+	public List<PrpUser> duplcExist(PrpUser user);
 }

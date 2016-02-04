@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class CustomerServiceImp implements UserService {
 	public void deleteUserById(Integer id) {
 		custDao.deleteUserById(id);
 
+	}
+
+	@Override
+	public List<PrpUser> duplcExist(PrpUser user) {
+		return custDao.duplcExist(user);
 	}
 
 }

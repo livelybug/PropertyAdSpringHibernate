@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class ProptCntl {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
 	@RequestMapping("/")
 	public String showHomePage(){
 		return "Login";
@@ -94,9 +95,15 @@ public class ProptCntl {
 		if(result.hasErrors()) {
 			mv.setViewName("CustomerForm");
 		}else {
-			customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-			custSv.addUser(customer);// Insert to DB
-			mv.setViewName("UserAdded");
+			if(custSv.duplcExist(customer) == null) {
+				customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+				custSv.addUser(customer);// Insert to DB
+				mv.setViewName("UserAdded");
+			} else {
+				result.rejectValue("username", "error.duplicate.username", "duplicate.username");
+				mv.addObject(result);
+				mv.setViewName("CustomerForm");  //email already exist, fill the form again
+			}
 		}
 		
 		return mv;
