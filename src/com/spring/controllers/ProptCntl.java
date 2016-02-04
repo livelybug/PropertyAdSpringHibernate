@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,8 +88,8 @@ public class ProptCntl {
 	}
 
 	@RequestMapping(value = "/addNewCustomer", method=RequestMethod.POST)
-	public ModelAndView addNewCustomertoDb(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {
-		
+	public ModelAndView addNewCustomertoDb(@ModelAttribute("customer") @Valid Customer customer, HttpSession session, 
+											BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		
 		if(result.hasErrors()) {
@@ -97,7 +97,14 @@ public class ProptCntl {
 		}else {
 			if(custSv.duplcExist(customer) == null) {
 				customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-				custSv.addUser(customer);// Insert to DB
+				try{
+					custSv.addUser(customer);// Insert to DB
+				} catch (Exception e) {
+					System.err.print(e.getLocalizedMessage());
+					session.setAttribute("unexpErr", UnexpectedError.dbInsertErr);
+					mv.setViewName("CustomerForm");  //Unexpected error, fill the form again
+					return mv;
+				}
 				mv.setViewName("UserAdded");
 			} else {
 				result.rejectValue("username", "error.duplicate.username", "duplicate.username");
