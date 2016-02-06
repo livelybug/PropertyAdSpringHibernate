@@ -169,6 +169,13 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.3.RELEASE</version>
 		</dependency>
+
+		<!-- log the error message handling errors such as http404, which doesn't output anything to console  -->		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
 		
   </dependencies>  
     
