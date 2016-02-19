@@ -14,4 +14,9 @@
     <context:component-scan base-package="com.spring.controllers">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+    
+    <bean id="prptSvMock" name="prptSvMock" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.spring.service.PropertyBldServiceImp"/>
+    </bean>
+    
 </beans>
