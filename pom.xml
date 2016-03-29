@@ -209,7 +209,7 @@
 		    <version>3.2.3.RELEASE</version>
 		    <scope>test</scope>
 		</dependency>
-		
+		<!-- dependencies for unit test -->
   </dependencies>  
     
   
