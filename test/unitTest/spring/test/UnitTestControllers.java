@@ -13,8 +13,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.util.ReflectionTestUtils;
 //import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -30,6 +32,7 @@ import com.spring.service.PropertyBldServiceImp;
 import unitTest.spring.domain.PropertyBldBuilder;
 
 import org.hamcrest.core.IsCollectionContaining;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -47,6 +50,13 @@ import java.util.List;
 		"classpath:com/spring/configs/security-context.xml"})
 
 @WebAppConfiguration(value = "WebContent")
+//@TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
+
+/*//For standalone unit test setup
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:WebContent/WEB-INF/spring-servlet.xml",
+		"classpath:com/spring/configs/security-context.xml"})
+*/
 
 public class UnitTestControllers {
 
@@ -55,9 +65,12 @@ public class UnitTestControllers {
     @Autowired
     private WebApplicationContext webApplicationContext;
     @Autowired
+    //@Mock
     PropertyBldServiceImp prptSvImpMock;
-
-/*//For standalone unit test env setup   
+    @InjectMocks
+    ProptCntl mockPrptCntl;
+    
+/*//For standalone unit test setup   
     @Mock
     PropertyBldServiceImp prptSvImpMock;
 
@@ -71,8 +84,16 @@ public class UnitTestControllers {
 		MockitoAnnotations.initMocks(this);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(mockPrptCntl).build();
 */		
-        Mockito.reset(prptSvImpMock);
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+		//mockPrptCntl = new ProptCntl();
+		MockitoAnnotations.initMocks(this);
+		//ReflectionTestUtils.setField(mockPrptCntl, "prptSv", prptSvImpMock);
+
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+		
+		
+		//prptSvImpMock = org.mockito.Mockito.mock(PropertyBldServiceImp.class);		
+        //Mockito.reset(prptSvImpMock);
+
 	}
 
 	@Test
