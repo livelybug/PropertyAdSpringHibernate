@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html ng-app="myLoginModule">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="css/libs/bootstrap.min.css">
 
  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- Include JQuery version 1.11.3 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/libs/jquery-2.2.1.min.js"></script>
+<script src="js/libs/angular.js"></script>
 <title>Login</title>
 <style>
 .indent {
@@ -97,6 +97,16 @@ Property List<span id="counter" class="badge"></span></a>
 <p class="indent"/> <a class="btn btn-primary btn-lg" href="showCustomerForm" >Customer register</a>
  <a class="btn btn-primary btn-lg" href="showPrptAgentForm" >Property Agent register</a>
  
+<div ng-controller="prpLstCtl"> 
+	<ul>
+		<li ng-repeat = "prpt in prptList.propertiesList | limitTo:quantity">
+			Property Name: {{prpt.propertyName}}		
+		</li>
+	</ul>
+</div>
+
+<script src="js/myJs.js"></script>
+  
 <script>
 
 	function updateCounter(inData){

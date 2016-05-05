@@ -8,11 +8,11 @@
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Project: property advertisement - property list</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"> -->
+<link type="text/css" rel="stylesheet" href="css/libs/bootstrap.min.css"> -->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SpringWebMVC-02: spring web beans</title>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="css/libs/bootstrap.min.css">
 </head>
 <body>
 <h1>Property  List</h1>
