@@ -80,11 +80,10 @@ public class ProptCntl {
 
 	@RequestMapping("/showPropertyList")
 	public String  showPropertyList(Model model) {
-		//send the contact list to the "ContactList.jsp"
-		//model.addAttribute("contactList", pb.getContactList());
-		
-		List<PropertyBld> prptLst = prptSv.getPropertyList();
-		model.addAttribute("propertyList", prptLst);
+		//send the contact list to the "ContactList.jsp"		
+//		List<PropertyBld> prptLst = prptSv.getPropertyList();
+//		model.addAttribute("propertyList", prptLst);
+// Use web service module instead
 		return "PropertyList";
 	}
 
