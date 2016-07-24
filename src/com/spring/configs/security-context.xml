@@ -18,25 +18,26 @@
 				<security:user name="user" authorities="USER"
 					password="user123" />
 			</security:user-service>
-			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
+			<!-- <security:password-encoder ref="passwordEncoder"></security:password-encoder> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/showNewContactForm"
+		<security:intercept-url pattern="/showCustomerForm"
 			access="isAuthenticated()" />
-		<security:intercept-url pattern="/showMessageForm"
+		<security:intercept-url pattern="/showPrptAgentForm"
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/fonts/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="permitAll" />
-		<security:form-login login-page="/login"
+		<security:form-login/>
+<!-- 		<security:form-login login-page="/spring_security_login"
 			authentication-failure-url="/login?error=true" />
 		
 		<security:logout logout-success-url="/logmeout"
-			logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID"
+			logout-url="/spring_security_logout" delete-cookies="JSESSIONID"
 			invalidate-session="true" />
-	</security:http>
+ -->	</security:http>
 	<security:debug />
 	<bean id="passwordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
