@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,9 +85,16 @@ public class ProptCntl {
 //		List<PropertyBld> prptLst = prptSv.getPropertyList();
 //		model.addAttribute("propertyList", prptLst);
 // Use web service module instead
+		if(true) throw new NullPointerException();
+
 		return "PropertyList";
 	}
-
+	
+/*	@ExceptionHandler(NullPointerException.class)
+	public String errorHandling(NullPointerException ex) {
+		return "Error";
+	}
+*/
 	@RequestMapping(value = "/addNewCustomer", method=RequestMethod.POST)
 	public ModelAndView addNewCustomertoDb(@ModelAttribute("customer") @Valid Customer customer, 
 											BindingResult result, HttpSession session) {

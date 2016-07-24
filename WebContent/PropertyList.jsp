@@ -38,7 +38,7 @@
 				<th><spring:message code="label.mailAgent"/></th>
 			</tr>
 			
-		    <tr ng-repeat = "property in prptList.propertiesList | limitTo:quantity | filter:search">
+		    <tr dir-paginate = "property in prptList.propertiesList | itemsPerPage:quantity | filter:search" ng-cloak>
 			
 				<td>{{property.propertyName}}</td>
 				<td>{{property.address.address}}</td>
@@ -57,6 +57,12 @@
 			</tr>
 		
 		</table>	
+		
+		<dir-pagination-controls
+	       max-size="5"
+	       direction-links="true"
+	       boundary-links="true" >
+	    </dir-pagination-controls>
 	</div>
 </div>
 

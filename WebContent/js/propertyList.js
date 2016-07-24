@@ -4,10 +4,10 @@
 
 alert("propertyList.js");
 
-var propertyList = angular.module("propertyListModule", []);
+var propertyList = angular.module("propertyListModule", ['angularUtils.directives.dirPagination']);
 function prpLstCtl($scope, $http) {
 
-	$scope.quantity = 3;
+	$scope.quantity = 2;
 	$http.get("getProperties")
 		.success(function(result) {
 			$scope.prptList = result;

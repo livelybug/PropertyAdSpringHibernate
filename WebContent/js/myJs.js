@@ -2,8 +2,6 @@
  * Store custom JS functions
  */
 
-alert("myJs.js");
-
 var myLogin = angular.module("myLoginModule", []);
 function prpLstCtl($scope, $http) {
 /*	var listRqst = new XMLHttpRequest();
