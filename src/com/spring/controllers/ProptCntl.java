@@ -85,8 +85,6 @@ public class ProptCntl {
 //		List<PropertyBld> prptLst = prptSv.getPropertyList();
 //		model.addAttribute("propertyList", prptLst);
 // Use web service module instead
-		if(true) throw new NullPointerException();
-
 		return "PropertyList";
 	}
 	

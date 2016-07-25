@@ -121,7 +121,7 @@ Property List<span id="counter" class="badge"></span></a>
 	
 	function onload(){
 		updatePage();
-		window.setInterval(updatePage, 3000);	//Call function updatePage continuosly  after every 3000 ms (3 seconds)
+		window.setInterval(updatePage, 99000);	//Call function updatePage continuosly  after every 3000 ms (3 seconds)
 	}
 
 	$(document).ready(onload);	//JQUERY Statement to call the function onload when the browser page is ready
