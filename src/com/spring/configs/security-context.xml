@@ -30,8 +30,9 @@
 		<security:intercept-url pattern="/fonts/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="permitAll" />
-		<security:form-login/>
-<!-- 		<security:form-login login-page="/spring_security_login"
+		<security:form-login login-page="/SecurityLogin"
+			authentication-failure-url="/SecurityLogin?error=true" />
+		<!-- 		<security:form-login login-page="/spring_security_login"
 			authentication-failure-url="/login?error=true" />
 		
 		<security:logout logout-success-url="/logmeout"
