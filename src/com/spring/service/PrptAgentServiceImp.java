@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.spring.dao.PrptUserDao;
 import com.spring.domain.PropertyAgent;
 import com.spring.domain.PrpUser;
+import com.spring.domain.UserRole;
 
 @Service
 public class PrptAgentServiceImp implements UserService {
@@ -35,6 +36,7 @@ public class PrptAgentServiceImp implements UserService {
 
 	@Override
 	public void addUser(PrpUser user) {
+		user.addUserRole(new UserRole("ROLE_AGENT"));
 		prptAgtDao.addUser((PropertyAgent)user);
 	}
 

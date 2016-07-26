@@ -17,11 +17,6 @@ public class PropertyAgent extends PrpUser implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id //this is the primary key
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column // if you want the col name to be diff, add (name="NNN")
-	private int agentID;
-
 	@Column(unique=true)
 	@NotEmpty
 	private String licence;
@@ -37,7 +32,7 @@ public class PropertyAgent extends PrpUser implements Serializable{
 	public void setLicence(String licence) {
 		this.licence = licence;
 	}
-
+/*
 	public int getAgentID() {
 		return agentID;
 	}
@@ -46,7 +41,7 @@ public class PropertyAgent extends PrpUser implements Serializable{
 		this.agentID = agentID;
 	}
 
-	 public Object clone() throws CloneNotSupportedException {
+*/	 public Object clone() throws CloneNotSupportedException {
 	        return super.clone();
 	}
 }

@@ -8,6 +8,12 @@ public class LoginController {
 
 	@RequestMapping("/SecurityLogin")
 	public String showLoginForm() {
-		return "SecurityLogin";
+		return "SecurityLoginForm";
 	}
+	
+	@RequestMapping("/logout")
+	public String showLogoutPage() {
+		return "LogoutPage";
+	}
+	
 }

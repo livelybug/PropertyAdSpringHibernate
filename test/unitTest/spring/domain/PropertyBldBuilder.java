@@ -41,7 +41,7 @@ public class PropertyBldBuilder {
     }
 
     public void setPropertyAgent() {
-    	pAgt.setAgentID(301);
+    	pAgt.setUserID(301);
     	pAgt.setAddress(address);
     	pAgt.setEmail("pAgt1@abc.com");
     	pAgt.setFirstName("PANF");

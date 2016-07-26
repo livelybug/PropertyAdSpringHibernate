@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>    
 <!DOCTYPE html>
 <html ng-app="propertyListModule">
 <head>
@@ -66,9 +67,16 @@
 	</div>
 </div>
 
-<a href="PrptListExcel">Excel</a>
+<!-- <a href="PrptListExcel">Excel</a> -->
+<sec:authorize access="hasRole('ROLE_USER')">
+	<a href="PrptListExcel">Excel</a>
+</sec:authorize>
+
 <a href="PrptListPdf">PDF</a>
 <a href="${pageContext.request.contextPath}/">back home</a>
+
+<a class="btn btn-info" href="${pageContext.request.contextPath}/j_spring_security_logout">
+	<span class="glyphicon glyphicon-log-out"></span>logout</a>
 
 <script src="js/propertyList.js"></script>
 

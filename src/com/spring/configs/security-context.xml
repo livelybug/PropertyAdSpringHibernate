@@ -22,23 +22,27 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 	<security:http use-expressions="true">
+		
+<!-- 		<security:intercept-url pattern="/showPrptAgentForm"
+			access="isAuthenticated()" />
+			<security:intercept-url pattern="/showCustomerForm"
+			access="isAuthenticated()" />
+ -->
 		<security:intercept-url pattern="/showCustomerForm"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/showPrptAgentForm"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/css/**" access="permitAll" />
-		<security:intercept-url pattern="/fonts/**" access="permitAll" />
+				access="hasAnyRole('ROLE_USER', 'ROLE_AGENT', 'USER')" />
+ 		<security:intercept-url pattern="/showPrptAgentForm"
+			access="hasRole('USER')" />
+
+ 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 		<security:form-login login-page="/SecurityLogin"
 			authentication-failure-url="/SecurityLogin?error=true" />
-		<!-- 		<security:form-login login-page="/spring_security_login"
-			authentication-failure-url="/login?error=true" />
-		
-		<security:logout logout-success-url="/logmeout"
-			logout-url="/spring_security_logout" delete-cookies="JSESSIONID"
-			invalidate-session="true" />
- -->	</security:http>
+		<security:logout logout-url="/j_spring_security_logout"
+			invalidate-session="true" delete-cookies="JSESSIONID"
+			logout-success-url="/logout" />
+		<security:access-denied-handler error-page="/accessDenied" />
+	</security:http>
 	<security:debug />
 	<bean id="passwordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
