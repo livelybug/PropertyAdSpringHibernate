@@ -21,12 +21,12 @@ public class UserRole {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long userRoleId;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+/*	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="USER_ID", nullable=false) 
 	// if no @JoinColumn is defined along with the @ManyToOne mapping, then a default name is assumed
 	@JsonBackReference
 	private PrpUser user;
-	
+*/	
 	@Column(nullable=false)
 	private String role;
 	
@@ -47,14 +47,14 @@ public class UserRole {
 		this.userRoleId = userRoleId;
 	}
 
-	public PrpUser getUser() {
+/*	public PrpUser getUser() {
 		return user;
 	}
 
 	public void setUser(PrpUser user) {
 		this.user = user;
 	}
-
+*/
 	public String getRole() {
 		return role;
 	}
@@ -63,8 +63,8 @@ public class UserRole {
 		this.role = role;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "UserRole [userRoleId=" + userRoleId + ", user=" + user + ", role=" + role + "]";
 	}
-}
+*/}

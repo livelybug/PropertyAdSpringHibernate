@@ -24,9 +24,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.spring.validation.DigitsAnn;
 
-//@MappedSuperclass
-@Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@MappedSuperclass
+//@Entity
+//@Inheritance(strategy=InheritanceType.JOINED)
 public class PrpUser{
 
 	@Id //this is the primary key
@@ -70,9 +70,10 @@ public class PrpUser{
 	 *The other non-owner entity has to provide the mappedBy attribute to indicate that it is not the owner of the relationship.
 	 *The mappedBy attribute refers to the attribute name "user", defined in the entity UserRole. 
 	 *Ref: http://www.kumaranuj.com/
+	 *mappedBy="user",
 	 */
-	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	//@JsonManagedReference
 	private List<UserRole> roles = new ArrayList<>();
 	
 	@Column(nullable=false)
@@ -189,7 +190,7 @@ public class PrpUser{
 	}
 
 	public void addUserRole(UserRole userRole) {
-		userRole.setUser(this);
+		//userRole.setUser(this);
 		roles.add(userRole);
 	}
 
