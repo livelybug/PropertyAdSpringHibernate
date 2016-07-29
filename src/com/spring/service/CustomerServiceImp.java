@@ -25,9 +25,7 @@ public class CustomerServiceImp implements UserService, UserDetailsService {
 	
 	@Override
 	public void addUser(PrpUser user) {
-		//Adding role "ROLE_USER" by default for all users 		
 		user.addUserRole(new UserRole("ROLE_USER"));
-
 		custDao.addUser(user);
 	}
 

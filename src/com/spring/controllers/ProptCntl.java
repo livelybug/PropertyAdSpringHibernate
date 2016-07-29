@@ -123,13 +123,15 @@ public class ProptCntl {
 	}
 
 	@RequestMapping(value = "/addNewPrptAgent", method=RequestMethod.POST)
-	public ModelAndView addNewPrptAgentoDb(@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent, BindingResult result) {
+	public ModelAndView addNewPrptAgentoDb(@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent, 
+			BindingResult result, HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
 		
 		if(result.hasErrors()) {
 			mv.setViewName("PropertyAgentForm");
 		}else {
+			propertyAgent.setPassword(passwordEncoder.encode(propertyAgent.getPassword()));
 			prptAgtSv.addUser(propertyAgent);
 			mv.setViewName("UserAdded");
 		}

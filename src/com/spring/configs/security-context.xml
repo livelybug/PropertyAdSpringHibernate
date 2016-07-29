@@ -12,7 +12,7 @@
 	<context:component-scan base-package="com.spring"></context:component-scan>
 
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="custSv"> <!-- user-service-ref="custSv" -->
+		<security:authentication-provider user-service-ref="custSv">
 <!-- 			<security:user-service>
 				<security:user name="admin" authorities="ADMIN"
 					password="admin123" />
@@ -21,17 +21,24 @@
 			</security:user-service>
  -->			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
 		</security:authentication-provider>
+		<security:authentication-provider user-service-ref="prptAgtSv">
+			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
+		</security:authentication-provider>
 	</security:authentication-manager>
 	<security:http use-expressions="true">
 
 <!-- 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />
- -->		
-		<security:intercept-url pattern="/showPrptAgentForm"
-			access="isAuthenticated()" />
+ 		
 			<security:intercept-url pattern="/showCustomerForm"
 			access="isAuthenticated()" />
+-->
 
+		<security:intercept-url pattern="/showPropertyForm"
+					access="hasRole('ROLE_AGENT')" />
+		<security:intercept-url pattern="/showPrptAgentForm"
+			access="isAuthenticated()" />
+	
 		<!-- <security:intercept-url pattern="/showCustomerForm"
 				access="hasAnyRole('ROLE_USER', 'ROLE_AGENT', 'USER')" />
  		<security:intercept-url pattern="/showPrptAgentForm"

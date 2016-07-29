@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.domain.Customer;
 import com.spring.domain.PropertyAgent;
 import com.spring.domain.PrpUser;
 
@@ -49,9 +51,11 @@ public class PrptAgentDaoImp implements PrptUserDao {
 	}
 
 	@Override
+	@Transactional
 	public PrpUser findUserByName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		return (PropertyAgent) session.createCriteria( PropertyAgent.class ).
+				add( Restrictions.eq("username", userName) ).uniqueResult();
 	}
 
 }
