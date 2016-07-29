@@ -48,4 +48,10 @@ public class PrptAgentDaoImp implements PrptUserDao {
 		return null;
 	}
 
+	@Override
+	public PrpUser findUserByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

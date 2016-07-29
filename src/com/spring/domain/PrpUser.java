@@ -26,7 +26,7 @@ import com.spring.validation.DigitsAnn;
 
 //@MappedSuperclass
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class PrpUser{
 
 	@Id //this is the primary key

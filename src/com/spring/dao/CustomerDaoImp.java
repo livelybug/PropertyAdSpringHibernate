@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,6 +75,14 @@ public class CustomerDaoImp implements PrptUserDao {
 			return users;
 		else
 			return null;
+	}
+
+	@Override
+	@Transactional
+	public PrpUser findUserByName(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Customer) session.createCriteria( Customer.class ).
+				add( Restrictions.eq("username", userName) ).uniqueResult();
 	}
 
 }

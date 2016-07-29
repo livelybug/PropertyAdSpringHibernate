@@ -171,6 +171,13 @@
 			<version>3.2.3.RELEASE</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>3.2.3.RELEASE</version>
+		</dependency>
+
 		<!-- log the error message handling errors such as http404, which doesn't output anything to console  -->		
 		<dependency>
 			<groupId>log4j</groupId>

@@ -22,7 +22,7 @@ public class UserRole {
 	private Long userRoleId;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	//@JoinColumn(name="USER_ID", nullable=false) 
+	@JoinColumn(name="USER_ID", nullable=false) 
 	// if no @JoinColumn is defined along with the @ManyToOne mapping, then a default name is assumed
 	@JsonBackReference
 	private PrpUser user;
@@ -65,9 +65,6 @@ public class UserRole {
 
 	@Override
 	public String toString() {
-		return "UserRole [userRoleId=" + userRoleId + ", user=" + user
-				+ ", role=" + role + "]";
+		return "UserRole [userRoleId=" + userRoleId + ", user=" + user + ", role=" + role + "]";
 	}
-	
-	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html ng-app="myLoginModule">
 <head>
@@ -7,7 +8,7 @@
 <link type="text/css" rel="stylesheet" href="css/libs/bootstrap.min.css">
 
  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="js/libs/jquery-2.2.1.min.js"></script>
+<script src="js/libs/jquery-2.2.1.js"></script>
 <script src="js/libs/angular.js"></script>
 <title>Login</title>
 <style>
@@ -96,7 +97,17 @@ Property List<span id="counter" class="badge"></span></a>
 
 <p class="indent"/> <a class="btn btn-primary btn-lg" href="showCustomerForm" >Customer register</a>
  <a class="btn btn-primary btn-lg" href="showPrptAgentForm" >Property Agent register</a>
- 
+
+<div>
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<a href="showPropertyForm" >Property register</a><p/>
+	</sec:authorize>
+</div>
+
+<a class="btn btn-info" href="${pageContext.request.contextPath}/j_spring_security_logout">
+	<span class="glyphicon glyphicon-log-out"></span>logout</a>
+
+
 <div ng-controller="prpLstCtl"> 
 	<ul>
 		<li ng-repeat = "prpt in prptList.propertiesList | limitTo:quantity">
