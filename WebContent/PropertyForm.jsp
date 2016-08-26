@@ -16,7 +16,7 @@
 <h3>Add New Property</h3>
 
 
-<form:form action="addNewProperty" method="post" commandName="property">
+<form:form action="addNewProperty" method="post" commandName="property" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td><spring:message code="label.propertyName"/></td>
@@ -54,7 +54,11 @@
 	<tr>
 		<td>Property Photo</td>
 		<td>
-			<input type="file" name="image" size="30">
+		<td><input type="file" name="image" size="30"></td>
+<!--  		
+		<td><input type="file" name="propertyImage[1]" size="30"></td>
+		<td><input type="file" name="propertyImage[2]" size="30"></td>
+ -->
 		</td>
 	</tr>
 

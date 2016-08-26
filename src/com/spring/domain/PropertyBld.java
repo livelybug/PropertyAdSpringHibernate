@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,8 +41,13 @@ public class PropertyBld implements Serializable{
 	@ManyToOne(cascade=CascadeType.ALL)
 	@Valid
 	private PropertyAgent pAgt;
-	//private Part imgFile;
-	
+
+	@Lob
+    //@ElementCollection(targetClass=byte[].class)
+	//@OrderColumn
+	@Column
+	//private List<byte[]> propertyImages;
+	private byte[] propertyImage;	
 	
 	public int getPropertyId() {
 		return propertyId;
@@ -78,6 +84,12 @@ public class PropertyBld implements Serializable{
 	}
 	public void setpAgt(PropertyAgent pAgt) {
 		this.pAgt = pAgt;
+	}
+	public byte[] getPropertyImage() {
+		return propertyImage;
+	}
+	public void setPropertyImage(byte[] propertyImage) {
+		this.propertyImage = propertyImage;
 	}
 	
 }

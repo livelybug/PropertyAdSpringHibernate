@@ -81,5 +81,8 @@
 <!-- 	<mvc:resources location="/fonts/" mapping="/fonts/**" /> -->
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
-
+		<!-- For Commons file upload  -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="500000"/>
+	</bean>
  </beans>

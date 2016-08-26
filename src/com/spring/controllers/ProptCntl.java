@@ -1,5 +1,9 @@
 package com.spring.controllers;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,8 +23,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.domain.Customer;
@@ -141,14 +148,37 @@ public class ProptCntl {
 
 	@RequestMapping(value = "/addNewProperty", method=RequestMethod.POST)
 	public ModelAndView addNewPropertyoDb(@ModelAttribute("property") @Valid PropertyBld property, 
-			@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent,
+			@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent, @RequestParam("image") MultipartFile image,
 			BindingResult result) {
-		
+				
 		ModelAndView mv = new ModelAndView();
 		
 		if(result.hasErrors()) {
 			mv.setViewName("PropertyForm");
 		}else {
+		
+			final String ROOT = "upload-dir";
+			//List<Blob> blobs = null;
+			List<byte[]> blobs = new ArrayList<>();
+			
+/*			if(!images.isEmpty())
+				for(Part image : images)
+*/					try {
+						//Session session = sessionFactory.getCurrentSession();
+						//LobHelper lobHelper = session.getLobHelper();
+						//Blob blob = lobHelper.createBlob(image.getInputStream(), image.getSize());
+						InputStream input = image.getInputStream();
+						byte[] bytesBlk = IOUtils.toByteArray(input);
+						blobs.add(bytesBlk);
+						property.setPropertyImage(bytesBlk);
+						Files.copy(image.getInputStream(), Paths.get(ROOT, image.getName()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+/*			if(!blobs.isEmpty())
+				property.setPropertyImages(blobs);
+*/			
 			property.setpAgt(propertyAgent);
 			prptSv.addProperty(property);
 			mv.setViewName("UserAdded");
