@@ -13,13 +13,10 @@
 
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="custSv">
-<!-- 			<security:user-service>
-				<security:user name="admin" authorities="ADMIN"
-					password="admin123" />
-				<security:user name="user" authorities="USER"
-					password="user123" />
-			</security:user-service>
- -->			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
+<!-- 		<security:user-service>
+				<security:user name="user" authorities="USER" password="user123" />
+			</security:user-service> -->
+			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
 		</security:authentication-provider>
 		<security:authentication-provider user-service-ref="prptAgtSv">
 			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
@@ -27,27 +24,15 @@
 	</security:authentication-manager>
 	<security:http use-expressions="true">
 
-<!-- 		<security:intercept-url pattern="/**"
-			access="isAuthenticated()" />
- 		
-			<security:intercept-url pattern="/showCustomerForm"
-			access="isAuthenticated()" />
--->
-
-		<security:intercept-url pattern="/showPropertyForm"
-					access="hasRole('ROLE_AGENT')" />
-		<security:intercept-url pattern="/showPrptAgentForm"
-			access="isAuthenticated()" />
+<!--    <security:intercept-url pattern="/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/showCustomerForm" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/showPropertyForm" access="hasAnyRole('ROLE_USER', 'ROLE_AGENT', 'USER')" />
+		<security:intercept-url pattern="/showPrptAgentForm" access="IS_AUTHENTICATED_ANONYMOUSLY" />     
+		<security:intercept-url pattern="/**" access="permitAll" requires-channel="https"/> -->
+		<security:intercept-url pattern="/showPropertyForm" access="hasRole('ROLE_AGENT')" requires-channel="https"/>
 	
-		<!-- <security:intercept-url pattern="/showCustomerForm"
-				access="hasAnyRole('ROLE_USER', 'ROLE_AGENT', 'USER')" />
- 		<security:intercept-url pattern="/showPrptAgentForm"
-			access="hasRole('USER')" />
- -->
-<!--  		<security:intercept-url pattern="/css/**" access="permitAll" />
-		<security:intercept-url pattern="/js/**" access="permitAll" />
-		<security:intercept-url pattern="/**" access="permitAll" />
- -->
+<!--   <security:port-mappings> <security:port-mapping http="8080" https="9443"/> </security:port-mappings> -->
+
  		<!-- <security:form-login/>  always-use-default-target="true" -->
 		<security:form-login login-page="/SecurityLogin"
 			authentication-failure-url="/SecurityLogin?error=true"/>
