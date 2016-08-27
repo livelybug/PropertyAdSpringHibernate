@@ -4,16 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +29,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.dao.PrptUserDao;
 import com.spring.domain.Customer;
 import com.spring.domain.PropertyAgent;
 import com.spring.domain.PropertyBld;
@@ -40,7 +44,7 @@ import com.spring.service.UserService;
 
 
 @Controller
-@SessionAttributes("propertyAgent")
+//@SessionAttributes("propertyAgent")
 public class ProptCntl {
 
 	@Autowired
@@ -49,7 +53,8 @@ public class ProptCntl {
 	UserService prptAgtSv;
 	@Autowired
 	PropertyBldServiceImp prptSv;
-	
+	@Autowired
+	PrptUserDao prptAgtDao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -148,17 +153,33 @@ public class ProptCntl {
 
 	@RequestMapping(value = "/addNewProperty", method=RequestMethod.POST)
 	public ModelAndView addNewPropertyoDb(@ModelAttribute("property") @Valid PropertyBld property, 
-			@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent, @RequestParam("image") MultipartFile image,
+			//@ModelAttribute("propertyAgent") @Valid PropertyAgent propertyAgent, 
+			@RequestParam("image") MultipartFile image,
+			Authentication authentication,
 			BindingResult result) {
+
+		boolean hasRoleAgent = false;
+		PropertyAgent propertyAgent = null;
 				
 		ModelAndView mv = new ModelAndView();
 		
 		if(result.hasErrors()) {
 			mv.setViewName("PropertyForm");
-		}else {
+		}else if(authentication.isAuthenticated()){
+			for (GrantedAuthority authority : authentication.getAuthorities()) {
+			     hasRoleAgent = authority.getAuthority().equals("ROLE_AGENT");
+			     if(hasRoleAgent == true)
+			    	 propertyAgent = (PropertyAgent) prptAgtDao.findUserByName(authentication.getName());
+			    	 break;
+			}
+			
+			if(hasRoleAgent == false)
+				mv.setViewName("Error");
+		}
+		
+		if(hasRoleAgent == true) {
 		
 			final String ROOT = "upload-dir";
-			//List<Blob> blobs = null;
 			List<byte[]> blobs = new ArrayList<>();
 			
 /*			if(!images.isEmpty())

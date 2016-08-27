@@ -99,9 +99,8 @@ Property List<span id="counter" class="badge"></span></a>
  <a class="btn btn-primary btn-lg" href="showPrptAgentForm" >Property Agent register</a>
 
 <div>
-	<sec:authorize access="hasRole('ROLE_USER')">
+	<%-- <sec:authorize access="hasRole('ROLE_USER')"> --%>
 		<a href="showPropertyForm" >Property register</a><p/>
-	</sec:authorize>
 </div>
 
 <a class="btn btn-info" href="${pageContext.request.contextPath}/j_spring_security_logout">
